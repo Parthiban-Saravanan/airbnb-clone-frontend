@@ -1,0 +1,9 @@
+const arr = [2,21, 45, 67, 86, 12, 40]
+for (let i=0; i<arr.length; i++){
+    if(i%2){
+    console.log(arr[i], "It is divisible by two")
+    }
+    else{
+    console.log(arr[i], "It is not divisile by two")
+    }
+}
