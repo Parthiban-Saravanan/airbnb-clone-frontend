@@ -1,0 +1,270 @@
+// JS - Javascript
+// It is a scripting Language
+ 
+// DATA - some information to program to execute.
+// DATATYPE - defines the type of data
+ 
+// "priya" - string
+// "arjun" - string
+// "arvind" - string
+// '12345456'- string
+ 
+// 10 - integer
+// 10.5 - float
+// -1 - integer
+// 10.555555555555555555555555555552423252523525 - double
+ 
+ 
+// 10 - Number
+// 15 - Number
+// 15.50 - Number
+ 
+// true or false - boolean;
+ 
+// VARIABLES - stores the data
+ 
+ 
+// String myName = "Priya";
+// int myAge = 20;
+ 
+// var, let, const
+// VARIABLE DECLARATION
+var myName = 'John'; // string
+var myAge = 12; // number
+var myAddress = 'Chennai, India'; // string
+var isEligibleToVote = false; // boolean;
+ 
+// OPERATORS
+// ARITHMETIC OPERATORS 
+//  +, - , *, / , %
+console.log("Hello");
+console.log(5 + 10);
+console.log(10 - 8);
+console.log(10 * 8);
+console.log(10 / 3);
+console.log(10 % 3);
+// CONDITIONAL OPERATORS
+// > , < , >=, <=, ==, !=
+ 
+console.log(5 > 2); // true
+console.log(5 < 2); // false
+console.log(5 == 2); // false
+console.log(5 != 2); // true
+ 
+console.log(5 >= 5); // true
+console.log(5 <= 4); // false
+ 
+==, != -> only checks the value to be matching.
+===, !== -> it checks value and datatype to be matching.
+ 
+ 
+ 
+// TERNARY OPERATORS - CONDITIONAL OPERATOR
+ 
+// ? :
+ 
+var result = 5 > 20 ? "5 is greater" : "5 is not greater";
+ 
+console.log(result);
+ 
+ 
+console.log(5 + 5);
+console.log(5 + 100);
+console.log(typeof (5 + '100'));  // output type
+ 
+// Primitive datatype
+ 
+// String
+// Number
+// Boolean
+ 
+var name = 'Kumar';
+ 
+ 
+ 
+ 
+// // primitive datatype
+ 
+// // collection of data to be stored in Array and Object
+// // ARRAY - 
+// var fruits = ['apple', 'orange', 'mango', 'pineapple', 'lemon'];
+// var myValues = ['john@gmail.com', 12345, true, 'Arjun'];
+ 
+// // ARRAY - stores the values using index; array index starts with 0; max index will be length - 1;
+// console.log(fruits.length);
+ 
+// console.log(fruits);
+// console.log(fruits[0]);
+// console.log(fruits[4]);
+// console.log(fruits[5]);
+ 
+ 
+// // fruits[100] = 'jackfruits';
+ 
+// // console.log(fruits);
+ 
+// fruits[10] = 'guava';
+ 
+// console.log(fruits.length);
+ 
+// console.log(fruits);
+ 
+ 
+// OBJECT - it holds collection of data;
+// JSON -> Javascript Object Notation;
+var userDetails = {
+    name: 'John',
+    email: 'john@gmail.com',
+    mobileNumber: "+91 12345678999",
+    address: "Chennai, India"
+}
+ 
+console.log(userDetails);
+ 
+ 
+console.log(userDetails['name']);
+console.log(userDetails['email']);
+ 
+ 
+console.log(userDetails.address);
+console.log(userDetails.mobileNumber);
+ 
+let keyName = 'email';
+ 
+ 
+console.log(userDetails[keyName]); // userDetails['email'] -> john@gmail.com
+ 
+console.log(userDetails.keyName); // undefined
+ 
+userDetails.profession = 'Doctor';
+userDetails['bloodGroup'] = 'O+ve'
+ 
+ 
+console.log(userDetails);
+ 
+ 
+// PRIMITIVE vs NON-PRIMITIVE
+ 
+// PRIMITIVe - String, number, boolean;
+ 
+let myName = 'Arvind';
+ 
+console.log(myName);
+ 
+// we access the value directly.
+ 
+ 
+// Non -primitive - Array, Object
+ 
+let names = ['priya', 'arjun', 'john', 'preeti'];
+ 
+console.log(names);
+ 
+console.log(names[1]);
+ 
+ 
+let userInfo  = {
+    name: 'Priya',
+    email: 'priya@gmail.com',
+    city: 'Bangalore'
+};
+ 
+console.log(userInfo.name);
+ 
+// we use some reference to access the value;
+ 
+ 
+ 
+ 
+// 1. charAt vs indexOf (w.r.t string and array)
+// 2. trim()
+ 
+ 
+ 
+// 3.  var, let, const -> keywords to declare variables;
+ 
+// var - can be redeclared and can be reassigned.
+// let - cannot be redeclared but can be reassigned.
+// const - cannot be redeclared and cannot be reassigned.
+ 
+ 
+// DECLARATION;
+ 
+// var myName = 'Lakshmi';
+ 
+ 
+// var myName = 'Michael';
+ 
+// myName = 'Farook';
+ 
+// console.log(myName);
+ 
+ 
+// let myProfession = 'Doctor';
+ 
+// myProfession = 'Architect';
+ 
+// console.log(myProfession);
+ 
+ 
+// const myBloodGroup = 'O+ve';
+ 
+// // const myBloodGroup = 'B+ve';
+// // myBloodGroup = 'A+ve';
+ 
+// console.log(myBloodGroup);
+ 
+ 
+// var name = 'Raj';
+// let age = 10;
+// const gender = 'Male';
+ 
+ 
+// trim
+ 
+// let myString = '    Hello World! H ow are you?       ';
+ 
+// console.log(myString);
+ 
+ 
+// console.log(myString.trim());
+ 
+// console.log(myString.trim(''));
+// console.log(myString.trimStart());
+// console.log(myString.trimEnd());
+ 
+// console.log(myString.trim());
+ 
+ 
+ 
+// String is a collection of characters -> array of characters;
+ 
+ 
+ 
+var myString = 'HELLOWORLD';
+ 
+// console.log(myString);
+ 
+// console.log(myString.length);
+ 
+// console.log(myString[2]);
+ 
+// console.log(myString.charAt(5)); index -> value
+ 
+// // it gives the character at the given index;
+ 
+// console.log(myString.indexOf('O'));
+ 
+// console.log(myString.indexOf('W'));
+ 
+// console.log(myString.indexOf('Y'));
+ 
+// it gives the index of the character specified. In case of mulitple occurences, it gives the index of the first occurence of that character.
+ 
+let cities = ['chennai', 'trichy', 'coimbatore', 'madurai'];
+ 
+console.log(cities.indexOf('chennai')); // value -> index
+ 
+// console.log(cities.charAt(3)); // charAt is string Function, cannot be used with array
+ 
+console.log(cities[3]);

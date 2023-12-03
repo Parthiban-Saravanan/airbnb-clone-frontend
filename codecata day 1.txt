@@ -1,0 +1,120 @@
+Programming:
+            Machine Understandable language,
+            To give instructions to the computer,
+            Reduce human effort.
+
+Variables:
+
+values -> You can store different thing!
+
+var        toys               =     "train";
+ |           |                         |
+variable   variable name             value
+
+Task: print your name.
+
+Example:
+       var noOfToys = 10;
+       console.log(noOfToys);
+
+Variable type"
+1.String
+2.Number
+
+var name = "Joe" -> String
+var age = 27;    -> Number
+
+String:
+
+=> length
+=> toUpperCase(), toLowerCase()
+=> charAt()
+=> substring()
+=> split()
+=> indexOf()
+=> replace()
+=> trim()
+
+1.length - returns the number of character is a string.
+Example:
+        var fruits = "Apple";
+        console.log(fruits.length);
+        "Apple" -> word
+        "Apple is a fruit" -> sentence
+        "A pple" -> character/Letter
+
+2. toUpperCase() & toLowerCase(): convert a string to uppercase or lowercase.
+Example:
+        var name = "john doe";
+        console.log(name.toUpperCase());
+
+// Task: toLowerCase()
+
+3.charAt() - returns the character at a specified index in a string.
+Example:
+        var name = "g u v i";
+                    0 1 2 3
+
+Example:
+       var name = "john";
+       console.log(name.charAt(2));
+
+4.substring(): extract a position of a string between two specified index.(position)
+Example:
+        var toy = "train";
+        console.log(toy.substring(1,5));
+
+Task: Lawrence -> Law
+
+5. split(): split is a string into an array of substrings based on specified separator.
+
+*Array:
+var name = "batman";
+var age = 18;
+
+var person = ["batman", 18];
+
+Example:
+        var greetings = "Hello, EveryOne";
+        var substring = greetings.split(",");
+        console.log(substring);
+
+
+6. indexOf(): returns the index of the first occurence of a special value in a string.
+Example:
+       var str = "Name";
+       console.log(str.indexOf("m"));
+
+7. replace(): replace a specified value with a new value.
+Example:
+        var string = "Nume";
+        console.log(string.replace("u","a"));
+
+8. trim(): remove whitespace from both end of a string.
+Task:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
