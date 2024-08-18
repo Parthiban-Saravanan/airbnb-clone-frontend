@@ -4,14 +4,19 @@ import HouseItem from './HouseItem';
 
 const HouseList = () => {
   const [houses, setHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchHouses = async () => {
       try {
         const response = await axiosInstance.get('/api/houses');
         setHouses(response.data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching houses:', error);
+        setError('Failed to load houses');
+        setLoading(false);
       }
     };
     fetchHouses();
@@ -30,6 +35,14 @@ const HouseList = () => {
       </div>
     );
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
