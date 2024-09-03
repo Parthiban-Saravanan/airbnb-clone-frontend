@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const HouseItem = ({ house }) => {
+const HouseItem = ({ house, onBook }) => {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    onBook(house); // Pass the house to the parent to add to the booking
+    // Navigate to the BillingPage with state
+    navigate('/billing', {
+      state: { bookedHouses: [house], totalPrice: house.price }, // Pass the selected house and price
+    });
+  };
+
   return (
     <div className="col-md-4 mb-4">
       <div className="card h-100 shadow">
@@ -13,7 +23,7 @@ const HouseItem = ({ house }) => {
           <p className="card-text">Price: ₹{house.price}/night</p>
           <p className="card-text">Rating: {house.rating}</p>
           <p className="card-text">Availability: {house.status}</p>
-          <Link to={`/house/${house._id}`} className="btn btn-primary">Book Now</Link>
+          <button className="btn btn-primary" onClick={handleBookNow}>Book Now</button>
         </div>
       </div>
     </div>
@@ -30,6 +40,7 @@ HouseItem.propTypes = {
     rating: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
   }).isRequired,
+  onBook: PropTypes.func.isRequired, // Ensure this is required
 };
 
 export default HouseItem;
