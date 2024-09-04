@@ -7,7 +7,6 @@ const HouseItem = ({ house, onBook }) => {
 
   const handleBookNow = () => {
     onBook(house); // Pass the house to the parent to add to the booking
-    // Navigate to the BillingPage with state
     navigate('/billing', {
       state: { bookedHouses: [house], totalPrice: house.price }, // Pass the selected house and price
     });
