@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAirbnb } from '@fortawesome/free-brands-svg-icons'; // Ensure this import is correct
+import { faAirbnb } from '@fortawesome/free-brands-svg-icons';
 
 const Navbar = () => {
   return (
