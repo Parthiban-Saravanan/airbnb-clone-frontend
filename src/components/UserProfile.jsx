@@ -4,11 +4,19 @@ import axiosInstance from '../api/axiosInstance';
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [bookedHouses, setBookedHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (!token) {
+          setError('User not authenticated');
+          setLoading(false);
+          return;
+        }
+
         const userResponse = await axiosInstance.get('/api/users/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -18,16 +26,20 @@ const UserProfile = () => {
         const bookingsResponse = await axiosInstance.get('/api/bookings', {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setBookedHouses(bookingsResponse.data.bookedHouses);
+        setBookedHouses(bookingsResponse.data.bookedHouses || []);
       } catch (error) {
-        console.error('Error fetching user profile:', error);
+        setError(error.message || 'An error occurred');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUser();
   }, []);
 
-  if (!user) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!user) return <div>No user data found</div>;
 
   return (
     <div className="bg-light p-4 rounded shadow">
