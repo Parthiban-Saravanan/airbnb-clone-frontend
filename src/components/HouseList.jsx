@@ -12,13 +12,14 @@ const HouseList = () => {
       try {
         const response = await axiosInstance.get('/api/houses');
         setHouses(response.data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching houses:', error);
         setError('Failed to load houses');
+      } finally {
         setLoading(false);
       }
     };
+
     fetchHouses();
   }, []);
 
