@@ -8,7 +8,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <Link className="navbar-brand" to="/">
-          <FontAwesomeIcon icon={faAirbnb} flip style={{color: "#ad0101",}} className="me-2"/> {/* Icon added here */}
+          <FontAwesomeIcon icon={faAirbnb} flip style={{color: "#ad0101"}} className="me-2"/> {/* Icon added here */}
           Airbnb Clone
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
