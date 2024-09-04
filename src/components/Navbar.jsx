@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons'; // Replace with any icon you prefer
+import { faAirbnb } from '@fortawesome/free-brands-svg-icons';
 
 const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <Link className="navbar-brand" to="/">
-          <FontAwesomeIcon icon={faHome} className="me-2" /> {/* Icon added here */}
+          <FontAwesomeIcon icon={faAirbnb} flip style={{color: "#ad0101",}} className="me-2"/> {/* Icon added here */}
           Airbnb Clone
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
