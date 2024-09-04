@@ -26,7 +26,7 @@ const HouseList = () => {
   const renderHousesByType = (type) => {
     const filteredHouses = houses.filter(house => house.type === type);
     return (
-      <div className="house-category mb-5">
+      <div className="house-category mb-5" key={type}>
         <h2 className="text-center text-secondary">{type}</h2>
         <div className="row">
           {filteredHouses.map(house => (
