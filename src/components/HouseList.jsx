@@ -25,6 +25,9 @@ const HouseList = () => {
 
   const renderHousesByType = (type) => {
     const filteredHouses = houses.filter(house => house.type === type);
+    if (filteredHouses.length === 0) {
+      return <p className="text-muted">No {type}s available at the moment.</p>;
+    }
     return (
       <div className="house-category mb-5" key={type}>
         <h2 className="text-center text-secondary">{type}</h2>
@@ -38,11 +41,11 @@ const HouseList = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-danger text-center">{error}</div>;
   }
 
   return (
