@@ -19,11 +19,11 @@ const LoginForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axiosInstance.post('/api/users/login', values);
-        // Save the user info to state or local storage if needed
-        console.log('Login successful:', response.data);
-        navigate('/');
+        localStorage.setItem('token', response.data.token);
+        navigate('/profile'); // Navigate to profile after successful login
       } catch (error) {
         console.error('Error logging in:', error);
+        alert('Login failed. Please check your credentials.');
       }
     },
   });
@@ -42,7 +42,6 @@ const LoginForm = () => {
           <div className="text-danger">{formik.errors.email}</div>
         ) : null}
       </div>
-
       <div className="form-group">
         <label htmlFor="password">Password</label>
         <input
@@ -55,8 +54,7 @@ const LoginForm = () => {
           <div className="text-danger">{formik.errors.password}</div>
         ) : null}
       </div>
-
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-primary mt-3">Login</button>
     </form>
   );
 };
