@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const HouseItem = ({ house, onBook }) => {
+const HouseItem = ({ house }) => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
-    onBook(house); // Pass the house to the parent to add to the booking
     navigate('/billing', {
-      state: { bookedHouses: [house], totalPrice: house.price }, // Pass the selected house and price
+      state: { bookedHouses: [house], totalPrice: house.price }, // Navigate with state for billing
     });
   };
 
@@ -39,7 +38,6 @@ HouseItem.propTypes = {
     rating: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
   }).isRequired,
-  onBook: PropTypes.func.isRequired, // Ensure this is required
 };
 
 export default HouseItem;
