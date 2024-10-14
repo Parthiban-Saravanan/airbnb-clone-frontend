@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../api/axiosInstance';
 
 const SignupForm = () => {
+    // State hooks for form inputs and error messages
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,8 +13,8 @@ const SignupForm = () => {
 
     // Validation for email and password
     const validateForm = () => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // Password regex
 
         if (!emailPattern.test(email)) {
             setValidationError('Invalid email format');
@@ -29,20 +30,23 @@ const SignupForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()) return; // Prevent submission if validation fails
 
         try {
+            // Sending POST request to signup the user
             const response = await axios.post('users/signup', { name, email, password });
             localStorage.setItem('userInfo', JSON.stringify(response.data));
-            navigate('/');
+            navigate('/'); // Redirect to home page on successful signup
         } catch (err) {
-            setError('User already exists or invalid data');
+            setError('User already exists or invalid data'); // Handle signup errors
         }
     };
 
     return (
         <div className="container mt-5">
+            <h2>Sign Up</h2>
             <form onSubmit={handleSubmit} className="w-50 mx-auto">
+                {/* Name input field */}
                 <div className="form-group mb-3">
                     <label>Name</label>
                     <input
@@ -53,6 +57,7 @@ const SignupForm = () => {
                         required
                     />
                 </div>
+                {/* Email input field */}
                 <div className="form-group mb-3">
                     <label>Email</label>
                     <input
@@ -63,6 +68,7 @@ const SignupForm = () => {
                         required
                     />
                 </div>
+                {/* Password input field */}
                 <div className="form-group mb-3">
                     <label>Password</label>
                     <input
@@ -73,8 +79,10 @@ const SignupForm = () => {
                         required
                     />
                 </div>
+                {/* Validation and error messages */}
                 {validationError && <div className="alert alert-danger">{validationError}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
+                {/* Submit button */}
                 <button type="submit" className="btn btn-primary w-100">Sign Up</button>
             </form>
         </div>
