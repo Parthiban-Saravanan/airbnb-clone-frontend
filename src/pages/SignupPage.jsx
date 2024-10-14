@@ -1,15 +1,15 @@
 import React from 'react';
-import SignupForm from '../components/SignupForm';
+import LoginForm from '../components/LoginForm';
 
-const SignupPage = () => {
+const LoginPage = () => {
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Sign Up</h2>
+      <h2 className="text-center mb-4">Login</h2>
       <div className="d-flex justify-content-center">
-        <SignupForm />
+        <LoginForm />
       </div>
     </div>
   );
 };
 
-export default SignupPage;
+export default LoginPage;
