@@ -20,11 +20,16 @@ const SignupForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axiosInstance.post('/api/users/signup', values);
-        console.log('Signup successful');
-        navigate('/');
+        const response = await axiosInstance.post('/api/users/signup', values);
+        if (response.status === 201) {
+          alert('Signup successful. Please login to continue.');
+          navigate('/login');
+        } else {
+          alert('Error signing up. Please try again.');
+        }
       } catch (error) {
         console.error('Error signing up:', error);
+        alert('Error signing up. Please try again.');
       }
     },
   });
