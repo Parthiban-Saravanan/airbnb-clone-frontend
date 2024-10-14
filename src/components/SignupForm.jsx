@@ -1,83 +1,84 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../api/axiosInstance';
+import axios from '../api/axiosInstance';
 
 const SignupForm = () => {
-  const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [validationError, setValidationError] = useState('');
+    const navigate = useNavigate();
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required('Required'),
-      email: Yup.string().email('Invalid email address').required('Required'),
-      password: Yup.string().required('Required'),
-    }),
-    onSubmit: async (values) => {
-      try {
-        const response = await axiosInstance.post('/api/users/signup', values);
-        if (response.status === 201) {
-          alert('Signup successful. Please login to continue.');
-          navigate('/login');
-        } else {
-          alert('Error signing up. Please try again.');
+    // Validation for email and password
+    const validateForm = () => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+        if (!emailPattern.test(email)) {
+            setValidationError('Invalid email format');
+            return false;
         }
-      } catch (error) {
-        console.error('Error signing up:', error);
-        alert('Error signing up. Please try again.');
-      }
-    },
-  });
+        if (!passwordPattern.test(password)) {
+            setValidationError('Password must be at least 6 characters long, include an uppercase letter, a lowercase letter, and a number');
+            return false;
+        }
+        setValidationError('');
+        return true;
+    };
 
-  return (
-    <form onSubmit={formik.handleSubmit} className="bg-light p-4 rounded shadow">
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          className="form-control"
-          {...formik.getFieldProps('name')}
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <div className="text-danger">{formik.errors.name}</div>
-        ) : null}
-      </div>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
 
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          className="form-control"
-          {...formik.getFieldProps('email')}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div className="text-danger">{formik.errors.email}</div>
-        ) : null}
-      </div>
+        try {
+            const response = await axios.post('users/signup', { name, email, password });
+            localStorage.setItem('userInfo', JSON.stringify(response.data));
+            navigate('/');
+        } catch (err) {
+            setError('User already exists or invalid data');
+        }
+    };
 
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          className="form-control"
-          {...formik.getFieldProps('password')}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <div className="text-danger">{formik.errors.password}</div>
-        ) : null}
-      </div>
-
-      <button type="submit" className="btn btn-primary">Sign Up</button>
-    </form>
-  );
+    return (
+        <div className="container mt-5">
+            <form onSubmit={handleSubmit} className="w-50 mx-auto">
+                <div className="form-group mb-3">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                {validationError && <div className="alert alert-danger">{validationError}</div>}
+                {error && <div className="alert alert-danger">{error}</div>}
+                <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+            </form>
+        </div>
+    );
 };
 
 export default SignupForm;
