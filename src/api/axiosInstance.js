@@ -1,11 +1,17 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: 'https://airbnb-clone-backend-1-7s14.onrender.com', // Backend base URL
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true, // This allows cookies to be sent and received (useful for authentication)
+const instance = axios.create({
+  baseURL: 'https://airbnb-clone-backend-1-7s14.onrender.com',
 });
 
-export default axiosInstance;
+instance.interceptors.push({
+  request: (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+});
+
+export default instance;
